@@ -1,0 +1,37 @@
+.mainContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  /* margin-bottom: 20rem; */
+}
+.content {
+  width: 50%;
+  height: 60%;
+  background-color: rgb(152, 152, 152);
+  padding: 2rem;
+  border: 2px solid rgb(150, 183, 150);
+}
+.inputFieldContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.input_label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input_field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.input_field:focus {
+  border-color: #007bff;
+  outline: none;
+}

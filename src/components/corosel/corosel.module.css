@@ -1,0 +1,91 @@
+.carouselContainer {
+  display: flex;
+  /* border: 2px solid green; */
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  /* position: absolute; */
+}
+
+.carousel {
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  gap: 5rem;
+  padding: 20px;
+}
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  /* border: 5px solid rgb(202, 29, 29); */
+  gap: 2rem;
+}
+.title {
+  color: #007bff;
+  font-size: 2rem;
+  font-weight: 400;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.textStyle {
+  font-size: 1rem;
+  font-weight: 200;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.dateContainer {
+  display: flex;
+  gap: 1rem;
+}
+.carouselCard {
+  min-width: 25%;
+  height: 25rem;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s;
+}
+.carouselCardSelected {
+  min-width: 25%;
+  height: 25rem;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  border: 2px solid blue;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s;
+}
+.fadedCard {
+  opacity: 0.5;
+}
+
+.carouselControls {
+  margin-top: 20px;
+}
+
+button {
+  padding: 8px 16px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.createNewCard {
+  border: 2px dashed #ccc;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s;
+}
+
+.createNewCard:hover {
+  transform: scale(1.05);
+}
