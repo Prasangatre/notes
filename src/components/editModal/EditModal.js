@@ -12,10 +12,13 @@ const EditModal = ({
   const [editData, setEditData] = useState(selectedCard)
   const [inputValue, setInputValue] = useState('')
   const [inputNameValue, setInputNameValue] = useState('')
+  const [inputPostValue, setInputPostValue] = useState('')
   const [showDropdown, setShowDropdown] = useState(false)
   const options = ['Madhav', 'Pavan', 'Shikhar', 'Patel']
+  const optionpost=['SDE1','SDE2','SRE','MANAGER']
   const [selectedOptionIndex, setSelectedOptionIndex] = useState(-1)
   const [shownamedropdown, setShowNameDropdown] = useState(false)
+  const [showpostdropdown, setShowpostDropdown] = useState(false)
   const handleInputChange = (event, fieldName) => {
     console.log(fieldName)
     const value = event.target.value
@@ -27,11 +30,17 @@ const EditModal = ({
     } else if (fieldName === 'firstName') {
       setShowDropdown(value === '/')
       setInputValue(value)
-    } else return
+    }
+    
+    else if (fieldName === 'post') {
+      setShowpostDropdown(value === '/')
+      setInputPostValue(value)
+    }
+    else return
   }
 
   const handleKeyDown = (event, fieldName) => {
-    if (showDropdown || shownamedropdown) {
+    if (showDropdown || shownamedropdown||showpostdropdown) {
       if (event.key === 'ArrowUp') {
         setSelectedOptionIndex((prevIndex) =>
           prevIndex > 0 ? prevIndex - 1 : options.length - 1,
@@ -47,13 +56,24 @@ const EditModal = ({
           } else if (fieldName === 'name') {
             setInputNameValue(options[selectedOptionIndex])
           }
-
+          else if (fieldName === 'post') {
+        
+            setInputPostValue(optionpost[selectedOptionIndex])
+          }
+          if (fieldName === 'firstName'||fieldName === 'name') {
           setEditData({
             ...editData,
             [fieldName]: options[selectedOptionIndex],
-          })
+          })}
+          else if(fieldName === 'post'){
+            setEditData({
+              ...editData,
+              [fieldName]: optionpost[selectedOptionIndex],
+            })}
+          
           setShowDropdown(false)
           setShowNameDropdown(false)
+          setShowpostDropdown(false)
         }
       }
     }
@@ -166,10 +186,30 @@ const EditModal = ({
           )}
           <label className={styles.input_label}>Post</label>
           <input
+          value={inputPostValue}
             className={styles.input_field}
             defaultValue={selectedCard.post}
-            onChange={(e) => setEditData({ ...editData, post: e.target.value })}
+            onChange={(e) => handleInputChange(e, 'post')}
+            onKeyDown={(e) => handleKeyDown(e, 'post')}
           />
+              {showpostdropdown ? (
+            <div style={{ background: 'pink', height: '24%' }}>
+              {optionpost.map((option, index) => (
+                <div
+                  key={index}
+                  className={
+                    index === selectedOptionIndex
+                      ? `${styles.option} ${styles.active}`
+                      : styles.option
+                  }
+                >
+                  {option}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <></>
+          )}
           <label className={styles.input_label}>Detail</label>
           <input
             className={styles.input_field}
@@ -178,46 +218,7 @@ const EditModal = ({
               setEditData({ ...editData, detail: e.target.value })
             }
           />
-          <div className={styles.dropdownContainer}>
-            <input
-              type="text"
-              value={inputValue}
-              onChange={handleInputChange}
-              onKeyDown={handleKeyDown}
-              className={styles.inputField}
-            />
-            {/* {showDropdown && (
-        <div className={styles.dropdown}>
-          {options.map((option, index) => (
-            <div
-              key={index}
-              className={`${styles.option} ${inputValue === option ? styles.active : ''}`}
-            >
-              {option}
-            </div>
-          ))}
-        </div>
-      )} */}
-            {/* {showDropdown ? (
-              <div style={{ background: 'pink', height: '24%' }}>
-                {options.map((option, index) => (
-                  <div
-                    key={index}
-                    // className={`${styles.option} ${
-                    //   inputValue === option ? styles.active : ''
-                    // }`}
-                    className={
-                      index === selectedOptionIndex ? `${styles.option} ${styles.active}` : styles.option
-                    }
-                  >
-                    {option}
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <></>
-            )} */}
-          </div>
+          
           <button onClick={() => handleUpdate()}>Edit</button>
           <button onClick={() => onClose()}>Discard</button>
         </div>

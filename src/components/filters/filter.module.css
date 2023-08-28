@@ -49,8 +49,42 @@
   width: 2rem;
   border-radius: 50%;
   background-color: rgb(219, 42, 42);
-display: flex;
-justify-content: center;
-align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: aliceblue;
 }
+@media (max-width: 768px) {
+  .filterSelectionContainer {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+    width: 100%;
+    flex-wrap: wrap;
+    white-space: nowrap;
+  }
+  .boxContainer {
+    flex: 0 0 auto;
+    background-color: rgba(60, 131, 237, 0.25);
+    display: flex;
+    width: 60%;
+    height: 3.5rem;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 0.6rem;
+    cursor: pointer;
+  }
+  .boxContainerSelected {
+    cursor: pointer;
+    flex: 0 0 auto;
+    background-color: rgba(60, 131, 237, 0.25);
+    display: flex;
+    width: 60%;
+    height: 3.5rem;
+    align-items: center;
+    border: 2px solid blue;
+    justify-content: space-around;
+    border-radius: 0.6rem;
+  }
+}
+
